@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Data:
     movementData:
-      MovementSpeed: 10
-      TurnSpeed: 0
+      MovementSpeed: 5
+      TurnSpeed: 10

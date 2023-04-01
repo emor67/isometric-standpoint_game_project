@@ -565,6 +565,7 @@ GameObject:
   - component: {fileID: 1905498251}
   - component: {fileID: 1905498255}
   - component: {fileID: 1905498254}
+  - component: {fileID: 1905498256}
   m_Layer: 0
   m_Name: TempPlayer
   m_TagString: Untagged
@@ -681,3 +682,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1905498256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1905498249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f397a17ce27c84c92d8a394e535f78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementController: {fileID: 1905498254}
