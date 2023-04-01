@@ -20,11 +20,11 @@ public class PlayerMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
        
         //Right now PlayerData scriptable has some issue and this is the evidence for devs
-        if (_data.MovementSpeed <= 0)
+        /*if (_data.MovementSpeed > 0)
         {
             Debug.LogError("MyScriptableObject reference is null!");
             return;
-        }
+        }*/
     }
     internal void SetData(PlayerMovementData movementData)
     {
@@ -34,17 +34,17 @@ public class PlayerMovementController : MonoBehaviour
     private void MovePlayer()
     {
         //Temporary variables will be changed with PlayerData scriptable object when it.
-        float speed = 5;
-        float turnSpeed = 5;
+        //float speed = 5;
+        //float turnSpeed = 10;
         //
 
-        Vector3 movement = new Vector3(horizontal, 0f, vertical) * Time.fixedDeltaTime * speed;
+        Vector3 movement = new Vector3(horizontal, 0f, vertical) * Time.fixedDeltaTime * _data.MovementSpeed;
         rb.MovePosition(transform.position + movement);
 
         if (movement != Vector3.zero)
         {
             Quaternion newRotation = Quaternion.LookRotation(movement);
-            rb.rotation = Quaternion.Slerp(rb.rotation, newRotation, turnSpeed * Time.deltaTime);
+            rb.rotation = Quaternion.Slerp(rb.rotation, newRotation, _data.TurnSpeed * Time.deltaTime);
         }
     }
    
