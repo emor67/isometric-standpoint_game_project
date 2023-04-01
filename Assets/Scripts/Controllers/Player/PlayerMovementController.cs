@@ -33,7 +33,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MovePlayer()
     {
-        //Temporary variables will be changed with PlayerData scriptable object.
+        //Temporary variables will be changed with PlayerData scriptable object when it.
         float speed = 5;
         float turnSpeed = 5;
         //
