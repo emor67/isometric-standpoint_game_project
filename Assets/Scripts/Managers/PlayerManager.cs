@@ -1,7 +1,5 @@
 using Data.UnityObjects;
 using Data.ValueObjects;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
