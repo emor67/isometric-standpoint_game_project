@@ -13,10 +13,12 @@ namespace Data.ValueObjects
     {
         public float MovementSpeed;
         public float TurnSpeed;
-        public PlayerMovementData(float movementSpeed,float turnSpeed)
+        public float PushForce;
+        public PlayerMovementData(float movementSpeed,float turnSpeed,float pushForce)
         {
             MovementSpeed = movementSpeed;
             TurnSpeed = turnSpeed;
+            PushForce = pushForce;
         }
     }
 
