@@ -7,17 +7,24 @@ using System;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private bool _isReadyToMove;
-
+    
     private Rigidbody rb;
     private float horizontal, vertical;
-
+    
     private PlayerMovementData _data;
-
+    
     private Vector3 _playerMovementInput;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+       
+        //Right now PlayerData scriptable has some issue and this is the evidence for devs
+        /*if (_data.MovementSpeed > 0)
+        {
+            Debug.LogError("MyScriptableObject reference is null!");
+            return;
+        }*/
     }
     internal void SetData(PlayerMovementData movementData)
     {
@@ -26,6 +33,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MovePlayer()
     {
+        //Temporary variables will be changed with PlayerData scriptable object when it.
+        //float speed = 5;
+        //float turnSpeed = 10;
+        //
+
         Vector3 movement = new Vector3(horizontal, 0f, vertical) * Time.fixedDeltaTime * _data.MovementSpeed;
         rb.MovePosition(transform.position + movement);
 
@@ -35,7 +47,7 @@ public class PlayerMovementController : MonoBehaviour
             rb.rotation = Quaternion.Slerp(rb.rotation, newRotation, _data.TurnSpeed * Time.deltaTime);
         }
     }
-
+   
     private void StopPlayer()
     {
         rb.velocity = Vector3.zero;
@@ -47,13 +59,13 @@ public class PlayerMovementController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
     }
-
+   
     private void FixedUpdate()
     {
         PlayerMovablityCheck();
         GetMovementInput();
     }
-
+  
     void PlayerMovablityCheck()
     {
         if (!_isReadyToMove)
@@ -66,35 +78,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             MovePlayer();
         }
-
+        
     }
 
-    //Diagonal limitation for pushable puzzle object 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Pushable"))
-        {
-            Rigidbody otherRb = collision.gameObject.GetComponent<Rigidbody>();
-            if (otherRb)
-            {
-                Vector3 pushDirection = collision.contacts[0].point - transform.position;
-                pushDirection.y = 0f;
-
-                // Check if the push direction is primarily along the X or Z axis
-                if (Mathf.Abs(pushDirection.z) > Mathf.Abs(pushDirection.x))
-                {
-                    pushDirection.z = 0f;
-                    otherRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionX;
-                }
-                else
-                {
-                    pushDirection.x = 0f;
-                    otherRb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezePositionZ;
-                }
-
-                otherRb.AddForce(pushDirection.normalized * _data.PushForce, ForceMode.Impulse);
-            }
-        }
-    }
 }
-

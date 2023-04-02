@@ -16,4 +16,3 @@ MonoBehaviour:
     movementData:
       MovementSpeed: 5
       TurnSpeed: 10
-      PushForce: 5
