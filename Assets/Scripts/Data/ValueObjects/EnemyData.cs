@@ -19,5 +19,6 @@ namespace Data.ValueObjects
             Health = health;
             Damage = damage;
         }
+        
     }
 }

@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField] private PlayerCombatController combatController;
+    [SerializeField] private PlayerCombatController playerCombatController;
+    [SerializeField] private EnemyCombatController enemyCombatController;
 
     private EnemyData _enemyData;
     private PlayerData _playeData;
 
-    private void Awake()
+    private void Update()
     {
         _enemyData = GetEnemyData();
         _playeData = GetPlayerData();
@@ -28,7 +29,8 @@ public class EnemyManager : MonoBehaviour
 
     private void SendDataToControllers()
     {
-        combatController.SetData(_playeData.combatData,_enemyData.combatData);
+        playerCombatController.SetData(_playeData.combatData,_enemyData.combatData);
+        enemyCombatController.SetData(_playeData.combatData, _enemyData.combatData);
     }
 
 }

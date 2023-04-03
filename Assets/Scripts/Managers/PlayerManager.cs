@@ -8,7 +8,7 @@ public class PlayerManager : MonoBehaviour
 
     private PlayerData _data;
 
-    private void Awake()
+    private void Update()
     {
         _data = GetPlayerData();
         SendDataToControllers();

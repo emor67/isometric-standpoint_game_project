@@ -5377,6 +5377,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1185789025904298599, guid: 1bbd95851eb1fa749bf3c23c65c045cb,
         type: 3}
+      propertyPath: playerSO
+      value: 
+      objectReference: {fileID: 11400000, guid: bb4dcf1f98fc4c74b80050cb4cb88dcb,
+        type: 2}
+    - target: {fileID: 1185789025904298599, guid: 1bbd95851eb1fa749bf3c23c65c045cb,
+        type: 3}
       propertyPath: collider1
       value: 
       objectReference: {fileID: 1207579498}
@@ -18896,7 +18902,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1051795435}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.63161933}
@@ -20898,7 +20904,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1207579496}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.6116833}
@@ -34748,7 +34754,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28c65f37e6c3afd44942e0145d403cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  combatController: {fileID: 1983095217}
+  playerCombatController: {fileID: 1983095217}
+  enemyCombatController: {fileID: 2051383535}
+--- !u!114 &2051383535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051383527}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4940ef75a9b7f4a9565312fd5d2833, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: 3092e4f12fb0b7e4caaaf2bc8efbf94b, type: 2}
 --- !u!1001 &2054787427
 PrefabInstance:
   m_ObjectHideFlags: 0

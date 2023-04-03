@@ -7,5 +7,10 @@ namespace Data.UnityObjects
     public class CD_Player : ScriptableObject
     {
         public PlayerData Data;
+
+        public void SetHealth(int health)
+        {
+            Data.combatData.Health = health;
+        }
     }
 }
