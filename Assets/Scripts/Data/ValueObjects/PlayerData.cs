@@ -28,11 +28,13 @@ namespace Data.ValueObjects
     {
         public int Health;
         public int Damage;
+        public float AttackResetDelay;
 
-        public PlayerCombatData(int health,int damage)
+        public PlayerCombatData(int health,int damage,float attackResetDelay)
         {
             Health = health;
             Damage = damage;
+            AttackResetDelay = attackResetDelay;
         }
     }
 }

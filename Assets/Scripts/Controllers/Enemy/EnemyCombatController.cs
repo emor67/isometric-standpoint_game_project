@@ -1,13 +1,15 @@
 using UnityEngine;
 using Data.UnityObjects;
 using Data.ValueObjects;
-using UnityEditor;
+using System.Collections;
 
 public class EnemyCombatController : MonoBehaviour
 {
     private int health;
     private EnemyCombatData _enemyData;
     private PlayerCombatData _playerData;
+
+    private bool _canAttack = true;
 
     public CD_Enemy enemySO;
     internal void SetData(PlayerCombatData playerCombatData, EnemyCombatData enemyCombatData)
@@ -16,7 +18,7 @@ public class EnemyCombatController : MonoBehaviour
         _playerData = playerCombatData;
     }
 
-    private void Awake()
+    private void Start()
     {
         //initial health
         enemySO.SetHealth(100); 
@@ -29,6 +31,8 @@ public class EnemyCombatController : MonoBehaviour
         enemySO.SetHealth(_enemyData.Health);
 
         Debug.Log("enemy health is "+ _enemyData.Health);
+
+        _canAttack = false;
 
         if (_enemyData.Health <= 0)
         {
@@ -47,8 +51,20 @@ public class EnemyCombatController : MonoBehaviour
     private void OnDamageTaken(Collider other)
     {
         if (other.gameObject.CompareTag("PlayerSword")){
-            TakeDamage(_playerData.Damage);
+
+            if (_canAttack)
+            {
+                TakeDamage(_playerData.Damage);
+
+                StartCoroutine(AttackResetCoroutine());
+            }
         }
     }
 
+    IEnumerator AttackResetCoroutine()
+    {
+        yield return new WaitForSeconds(5f);
+
+        _canAttack = true;
+    }
 }
