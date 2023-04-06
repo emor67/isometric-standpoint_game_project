@@ -8,7 +8,7 @@ public class PlayerCombatController : MonoBehaviour
     private PlayerCombatData _playerData;
     private EnemyCombatData _enemyData;
 
-    private bool _canAttack = true;
+    public bool _canAttack = true;
     
     [SerializeField] private bool _isShieldOn;
 
@@ -36,32 +36,20 @@ public class PlayerCombatController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             _isShieldOn = true;
+            _canAttack = false;
         }
         else if (Input.GetMouseButtonUp(1))
         {
             _isShieldOn = false;
+            _canAttack = true;
         }
     }
 
-    //shield is on/off checker for: while shield on, player cannot attack
-    private bool IsShieldOnCheck()
-    {
-        if (_isShieldOn)
-        {
-            _canAttack = false;
-            return true;
-        }
-        else
-        {
-            _canAttack = true;
-            return false;
-        }
-    }
 
     //player taking damage and setting its health
     public bool TakeDamage(int dmg)
     {
-        if (!IsShieldOnCheck())
+        if (!_isShieldOn)
         {
             _playerData.Health -= dmg;
 
@@ -95,7 +83,7 @@ public class PlayerCombatController : MonoBehaviour
                 TakeDamage(_enemyData.Damage);
                 StartCoroutine(AttackResetCoroutine());
             }
-            else return;
+            
         }
     }
 

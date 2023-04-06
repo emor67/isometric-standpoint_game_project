@@ -9,7 +9,7 @@ public class EnemyCombatController : MonoBehaviour
     private EnemyCombatData _enemyData;
     private PlayerCombatData _playerData;
 
-    private bool _canAttack = true;
+    private PlayerCombatController PlayerCombatController;
 
     public CD_Enemy enemySO;
     internal void SetData(PlayerCombatData playerCombatData, EnemyCombatData enemyCombatData)
@@ -21,7 +21,9 @@ public class EnemyCombatController : MonoBehaviour
     private void Start()
     {
         //initial health
-        enemySO.SetHealth(100); 
+        enemySO.SetHealth(100);
+
+        PlayerCombatController = FindObjectOfType<PlayerCombatController>();
     }
 
     public bool TakeDamage(int dmg)
@@ -30,10 +32,10 @@ public class EnemyCombatController : MonoBehaviour
 
         enemySO.SetHealth(_enemyData.Health);
 
-        Debug.Log("enemy health is "+ _enemyData.Health);
+        Debug.Log("enemy health is " + _enemyData.Health);
 
-        _canAttack = false;
-
+        PlayerCombatController._canAttack = false;
+        
         if (_enemyData.Health <= 0)
         {
             _enemyData.Health = 0;
@@ -52,7 +54,7 @@ public class EnemyCombatController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerSword")){
 
-            if (_canAttack)
+            if(PlayerCombatController._canAttack)
             {
                 TakeDamage(_playerData.Damage);
 
@@ -63,8 +65,12 @@ public class EnemyCombatController : MonoBehaviour
 
     IEnumerator AttackResetCoroutine()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(4f);
 
-        _canAttack = true;
+        PlayerCombatController._canAttack = true;
     }
+
+    ////
+    
+
 }
