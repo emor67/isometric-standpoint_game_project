@@ -1,12 +1,20 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAIController : MonoBehaviour
 {
     public GameObject player;
-    public float visionDistance = 10f;
+    
+    private float visionDistance = 13f;
+    
     private NavMeshAgent navAgent;
+    
+    private bool knockBack = false;
+    
     private Vector3 startPosition;
+    private Vector3 direction;
+
 
     private void Start()
     {
@@ -19,13 +27,17 @@ public class EnemyAIController : MonoBehaviour
         // Check if the player is within the enemy's line of sight
         if (CanSeePlayer())
         {
-            // Set the destination of the NavMeshAgent to the position of the player
             navAgent.SetDestination(player.transform.position);
         }
         else
         {
-            // Set the destination of the NavMeshAgent back to the starting position
             navAgent.SetDestination(startPosition);
+        }
+       
+        //Knocks the enemy back when appropriate 
+        if (knockBack)
+        {
+            navAgent.velocity = direction * 8;
         }
     }
 
@@ -40,14 +52,37 @@ public class EnemyAIController : MonoBehaviour
             {
                 if (hit.collider.gameObject == player)
                 {
-                    // The player is in line of sight
                     return true;
                 }
             }
         }
-
-        // The player is not in line of sight
         return false;
+    }
+
+    IEnumerator KnockBack()
+    {
+        knockBack = true;
+        navAgent.speed = 10f;
+        navAgent.angularSpeed = 0f;
+        navAgent.acceleration = 20f;
+
+        yield return new WaitForSeconds(0.2f);   
+
+        //Reset to default values
+        knockBack = false;
+        navAgent.speed = 3.8f;
+        navAgent.angularSpeed = 180f;
+        navAgent.acceleration = 10f;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        direction = other.transform.forward; //Always knocks enemy in the direction the main character is facing
+       
+        if (other.gameObject.CompareTag("PlayerSword"))
+        {
+            StartCoroutine(KnockBack());
+        }
     }
 }
 
