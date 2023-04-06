@@ -18,6 +18,6 @@ MonoBehaviour:
       TurnSpeed: 10
       PushForce: 5
     combatData:
-      Health: 40
+      Health: 35
       Damage: 5
-      AttackResetDelay: 4
+      AttackResetDelay: 3
