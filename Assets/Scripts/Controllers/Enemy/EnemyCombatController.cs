@@ -69,8 +69,4 @@ public class EnemyCombatController : MonoBehaviour
 
         PlayerCombatController._canAttack = true;
     }
-
-    ////
-    
-
 }

@@ -7,6 +7,7 @@ using System;
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private bool _isReadyToMove;
+    [SerializeField] private float knockbackForce = 8f;
 
     private Rigidbody rb;
     private float horizontal, vertical;
@@ -54,7 +55,7 @@ public class PlayerMovementController : MonoBehaviour
         GetMovementInput();
     }
 
-    void PlayerMovablityCheck()
+    private void PlayerMovablityCheck()
     {
         if (!_isReadyToMove)
         {
@@ -70,7 +71,27 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     //Diagonal limitation for pushable puzzle object 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
+    {
+        PlayerKnockback(collision);
+        
+        PushableObjectCollisionChecker(collision);
+    }
+
+    private void PlayerKnockback(Collision collision)
+    {
+        /*if (collision.gameObject.CompareTag("EnemySword"))
+        {
+            // Calculate knockback direction
+            Vector3 knockbackDirection = transform.position - collision.transform.position;
+            knockbackDirection.Normalize();
+
+            // Apply knockback force to player's rigidbody
+            rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
+        }*/
+    }
+
+    private void PushableObjectCollisionChecker(Collision collision)
     {
         if (collision.gameObject.CompareTag("Pushable"))
         {
