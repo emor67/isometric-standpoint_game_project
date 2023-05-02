@@ -5,13 +5,13 @@ using System.Collections;
 
 public class EnemyCombatController : MonoBehaviour
 {
-    private int health;
     private EnemyCombatData _enemyData;
     private PlayerCombatData _playerData;
 
-    private PlayerCombatController PlayerCombatController;
+    private PlayerCombatController _playerCombatController;
 
     public CD_Enemy enemySO;
+
     internal void SetData(PlayerCombatData playerCombatData, EnemyCombatData enemyCombatData)
     {
         _enemyData = enemyCombatData;
@@ -20,10 +20,7 @@ public class EnemyCombatController : MonoBehaviour
 
     private void Start()
     {
-        //initial health
-        enemySO.SetHealth(100);
-
-        PlayerCombatController = FindObjectOfType<PlayerCombatController>();
+        _playerCombatController = FindObjectOfType<PlayerCombatController>();
     }
 
     public bool TakeDamage(int dmg)
@@ -34,7 +31,7 @@ public class EnemyCombatController : MonoBehaviour
 
         Debug.Log("enemy health is " + _enemyData.Health);
 
-        PlayerCombatController._canAttack = false;
+        _playerCombatController.canAttack = false;
         
         if (_enemyData.Health <= 0)
         {
@@ -54,7 +51,7 @@ public class EnemyCombatController : MonoBehaviour
     {
         if (other.gameObject.CompareTag("PlayerSword")){
 
-            if(PlayerCombatController._canAttack)
+            if(_playerCombatController.canAttack)
             {
                 TakeDamage(_playerData.Damage);
 
@@ -67,6 +64,6 @@ public class EnemyCombatController : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
 
-        PlayerCombatController._canAttack = true;
+        _playerCombatController.canAttack = true;
     }
 }

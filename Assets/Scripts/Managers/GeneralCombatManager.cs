@@ -2,18 +2,23 @@
 using Data.ValueObjects;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public class GeneralCombatManager : MonoBehaviour
 {
     [SerializeField] private PlayerCombatController playerCombatController;
     [SerializeField] private EnemyCombatController enemyCombatController;
+    [SerializeField] private GeneralCombatController generalCombatController;
 
     private EnemyData _enemyData;
     private PlayerData _playerData;
 
-    private void Update()
+    private void Awake()
     {
         _enemyData = GetEnemyData();
         _playerData = GetPlayerData();
+    }
+
+    private void Update()
+    {
         SendDataToControllers();
     }
 
@@ -29,8 +34,8 @@ public class EnemyManager : MonoBehaviour
 
     private void SendDataToControllers()
     {
-        playerCombatController.SetData(_playerData.combatData,_enemyData.combatData);
+        playerCombatController.SetData(_playerData.combatData, _enemyData.combatData);
         enemyCombatController.SetData(_playerData.combatData, _enemyData.combatData);
+        generalCombatController.SetData(_playerData.combatData, _enemyData.combatData);
     }
-
 }
