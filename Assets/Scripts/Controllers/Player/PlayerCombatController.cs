@@ -1,26 +1,18 @@
-using System.Collections;
 using UnityEngine;
 using Data.ValueObjects;
-using Data.UnityObjects;
 
 public class PlayerCombatController : MonoBehaviour
 {
-    [SerializeField] private bool isShieldOn;
-    
-    private PlayerCombatData _playerData;
-    private EnemyCombatData _enemyData;
-
+    private GeneralCombatController _combatController;
+   
+    public bool isShieldOn;
     public bool canAttack = true;
 
-    public CD_Player playerSO;
-
-    internal void SetData(PlayerCombatData playerCombatData,EnemyCombatData enemyCombatData)
+    private void Awake()
     {
-        _enemyData = enemyCombatData;
-        _playerData = playerCombatData;
+        _combatController = FindObjectOfType<GeneralCombatController>();
     }
 
-    
     private void Update()
     {
         ShieldOnInput();
@@ -41,30 +33,6 @@ public class PlayerCombatController : MonoBehaviour
         }
     }
 
-
-    //player taking damage and setting its health
-    public bool TakeDamage(int dmg)
-    {
-        if (!isShieldOn)
-        {
-            _playerData.Health -= dmg;
-
-            playerSO.SetHealth(_playerData.Health);
-
-            Debug.Log("player health is " + _playerData.Health);
-
-            canAttack = false;
-        }
-       
-        if (_playerData.Health <= 0)
-        {
-            _playerData.Health = 0;
-            return true;
-        }
-        else
-            return false;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         OnDamageTaken(other);
@@ -72,22 +40,13 @@ public class PlayerCombatController : MonoBehaviour
 
     private void OnDamageTaken(Collider other)
     {
-        //with else if we can add other enemis but it won't be okay so we need better solution 
-        if (other.gameObject.CompareTag("EnemySword"))
-        {
-            if (canAttack)
+        if (other.gameObject.CompareTag("EnemySword")){
+
+            if(canAttack)
             {
-                TakeDamage(_enemyData.Damage);
-                StartCoroutine(AttackResetCoroutine());
+                _combatController.PlayerTakeAndSet();
             }
-            
         }
     }
 
-    IEnumerator AttackResetCoroutine()
-    {
-        yield return new WaitForSeconds(_playerData.AttackResetDelay);
-
-        canAttack = true;
-    }
 }

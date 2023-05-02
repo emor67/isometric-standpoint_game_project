@@ -34,8 +34,6 @@ public class GeneralCombatManager : MonoBehaviour
 
     private void SendDataToControllers()
     {
-        playerCombatController.SetData(_playerData.combatData, _enemyData.combatData);
-        enemyCombatController.SetData(_playerData.combatData, _enemyData.combatData);
         generalCombatController.SetData(_playerData.combatData, _enemyData.combatData);
     }
 }

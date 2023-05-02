@@ -10,7 +10,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        //to be fixed
+        //will be fixed
         _data = GetPlayerData();
         SendDataToControllers();
     }
