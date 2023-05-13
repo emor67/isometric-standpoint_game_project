@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Data.ValueObjects;
-using System;
-
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private bool isReadyToMove;
-    [SerializeField] private float knockbackForce = 8f;
     
     private float _horizontal, _vertical;
 
@@ -72,23 +67,8 @@ public class PlayerMovementController : MonoBehaviour
 
     //Diagonal limitation for pushable puzzle object 
     private void OnCollisionEnter(Collision collision)
-    {
-        PlayerKnockback(collision);
-        
+    {   
         PushableObjectCollisionChecker(collision);
-    }
-    //this might be bad idea
-    private void PlayerKnockback(Collision collision)
-    {
-        /*if (collision.gameObject.CompareTag("EnemySword"))
-        {
-            // Calculate knockback direction
-            Vector3 knockbackDirection = transform.position - collision.transform.position;
-            knockbackDirection.Normalize();
-
-            // Apply knockback force to player's rigidbody
-            rb.AddForce(knockbackDirection * knockbackForce, ForceMode.Impulse);
-        }*/
     }
 
     private void PushableObjectCollisionChecker(Collision collision)

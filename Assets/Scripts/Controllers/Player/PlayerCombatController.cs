@@ -1,5 +1,4 @@
 using UnityEngine;
-using Data.ValueObjects;
 
 public class PlayerCombatController : MonoBehaviour
 {
