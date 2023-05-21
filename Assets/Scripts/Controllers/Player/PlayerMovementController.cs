@@ -1,23 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Data.ValueObjects;
-using System;
-
 public class PlayerMovementController : MonoBehaviour
 {
-    [SerializeField] private bool _isReadyToMove;
-
-    private Rigidbody rb;
-    private float horizontal, vertical;
+    [SerializeField] private bool isReadyToMove;
+    
+    private float _horizontal, _vertical;
 
     private PlayerMovementData _data;
 
-    private Vector3 _playerMovementInput;
+    public Rigidbody playerRigidbody;
 
-    private void Start()
+    private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        playerRigidbody = GetComponent<Rigidbody>();
+        isReadyToMove = true;
     }
     internal void SetData(PlayerMovementData movementData)
     {
@@ -26,26 +22,26 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 movement = new Vector3(horizontal, 0f, vertical) * Time.fixedDeltaTime * _data.MovementSpeed;
-        rb.MovePosition(transform.position + movement);
+        Vector3 movement = new Vector3(_horizontal, 0f, _vertical) * Time.fixedDeltaTime * _data.MovementSpeed;
+        playerRigidbody.MovePosition(transform.position + movement);
 
         if (movement != Vector3.zero)
         {
             Quaternion newRotation = Quaternion.LookRotation(movement);
-            rb.rotation = Quaternion.Slerp(rb.rotation, newRotation, _data.TurnSpeed * Time.deltaTime);
+            playerRigidbody.rotation = Quaternion.Slerp(playerRigidbody.rotation, newRotation, _data.TurnSpeed * Time.deltaTime);
         }
     }
 
     private void StopPlayer()
     {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        playerRigidbody.velocity = Vector3.zero;
+        playerRigidbody.angularVelocity = Vector3.zero;
     }
 
     private void GetMovementInput()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
+        _horizontal = Input.GetAxis("Horizontal");
+        _vertical = Input.GetAxis("Vertical");
     }
 
     private void FixedUpdate()
@@ -54,15 +50,15 @@ public class PlayerMovementController : MonoBehaviour
         GetMovementInput();
     }
 
-    void PlayerMovablityCheck()
+    private void PlayerMovablityCheck()
     {
-        if (!_isReadyToMove)
+        if (!isReadyToMove)
         {
             StopPlayer();
             return;
         }
 
-        if (_isReadyToMove)
+        if (isReadyToMove)
         {
             MovePlayer();
         }
@@ -70,7 +66,12 @@ public class PlayerMovementController : MonoBehaviour
     }
 
     //Diagonal limitation for pushable puzzle object 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
+    {   
+        PushableObjectCollisionChecker(collision);
+    }
+
+    private void PushableObjectCollisionChecker(Collision collision)
     {
         if (collision.gameObject.CompareTag("Pushable"))
         {

@@ -6,6 +6,7 @@ namespace Data.ValueObjects
     public struct PlayerData
     {
         public PlayerMovementData movementData;
+        public PlayerCombatData combatData;
     }
 
     [Serializable]
@@ -22,5 +23,19 @@ namespace Data.ValueObjects
         }
     }
 
+    [Serializable]
+    public struct PlayerCombatData
+    {
+        public int Health;
+        public int Damage;
+        public float AttackResetDelay;
+
+        public PlayerCombatData(int health,int damage,float attackResetDelay)
+        {
+            Health = health;
+            Damage = damage;
+            AttackResetDelay = attackResetDelay;
+        }
+    }
 }
 

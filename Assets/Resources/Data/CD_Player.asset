@@ -17,3 +17,7 @@ MonoBehaviour:
       MovementSpeed: 5
       TurnSpeed: 10
       PushForce: 5
+    combatData:
+      Health: 35
+      Damage: 5
+      AttackResetDelay: 3
