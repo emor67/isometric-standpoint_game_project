@@ -423,10 +423,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 186.39999389648438,
-            "y": -48.799991607666019,
+            "x": 334.4000549316406,
+            "y": -50.400020599365237,
             "width": 208.00003051757813,
-            "height": 301.5999755859375
+            "height": 301.6000061035156
         }
     },
     "m_Slots": [
@@ -538,10 +538,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 491.9999694824219,
-            "y": -107.99998474121094,
-            "width": 97.60000610351563,
-            "height": 124.80000305175781
+            "x": 560.7999877929688,
+            "y": -175.1999969482422,
+            "width": 97.60003662109375,
+            "height": 124.79998779296875
         }
     },
     "m_Slots": [
@@ -667,7 +667,7 @@
         "code",
         "HLSL"
     ],
-    "m_Precision": 0,
+    "m_Precision": 2,
     "m_PreviewExpanded": true,
     "m_PreviewMode": 0,
     "m_CustomColors": {
