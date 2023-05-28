@@ -3,7 +3,37 @@ guid: 397cd1b1736f6c54dbb304235bf72c5b
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: belt.005
+    second: {fileID: 2100000, guid: 0b0dbe0272c6a5645813900edfa9d4b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: body.005
+    second: {fileID: 2100000, guid: 5ae91efd1ded3c145bf23a5eec2564ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyes.005
+    second: {fileID: 2100000, guid: e8e45a21cc3843946800398a418f4145, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair.005
+    second: {fileID: 2100000, guid: 5d03ccc1879856f4786a799576101bcd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: shorts.005
+    second: {fileID: 2100000, guid: 78ff009cd36d5594894b1179ee7d9568, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: topping.005
+    second: {fileID: 2100000, guid: 5cdadc5680581db43a3825c60a2f35ff, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
