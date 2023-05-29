@@ -12,5 +12,10 @@ namespace Data.UnityObjects
         {
             Data.combatData.Health = health;
         }
+
+        public void DamageMulti(int dmgmulti)
+        {
+            Data.combatData.Damage /= dmgmulti;
+        }
     }
 }

@@ -102,4 +102,21 @@ public class GeneralCombatController : MonoBehaviour
             StartCoroutine(EnemyAttackResetCoroutine());
         }
     }
+
+    ////potions
+    
+    public void HealthPotion() 
+    {
+        playerSO.Heal(10);    
+    }
+
+    public void DamageMultiplier()
+    {
+        playerSO.DamageMulti(2);
+    }
+
+    public void TakenDamageMultiplier()
+    {
+        enemySO.DamageMulti(2);
+    } 
 }
