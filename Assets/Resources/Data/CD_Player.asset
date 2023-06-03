@@ -17,6 +17,7 @@ MonoBehaviour:
       MovementSpeed: 5
       TurnSpeed: 10
       PushForce: 5
+      SpeedMultiplier: 2
     combatData:
       Health: 35
       Damage: 5
