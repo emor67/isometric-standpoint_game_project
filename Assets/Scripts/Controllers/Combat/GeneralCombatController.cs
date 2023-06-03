@@ -85,7 +85,7 @@ public class GeneralCombatController : MonoBehaviour
         _playerCombatController.canAttack = true;
     }
 
-    //Player taskes damage and set health
+    //Player takes damage and set health
     public void PlayerTakeAndSet()
     {
         PlayerTakeDamage(_enemyData.Damage);
