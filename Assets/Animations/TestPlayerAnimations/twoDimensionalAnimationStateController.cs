@@ -11,6 +11,7 @@ public class twoDimensionalAnimationStateController : MonoBehaviour
     public float deceleration = 2.0f;
     public float maximumWalkVelocity = 0.5f;
     public float mamixumumRunVelocity = 2.0f;
+    
 
     //increase performance - refactor
     int VelocityZHash;
