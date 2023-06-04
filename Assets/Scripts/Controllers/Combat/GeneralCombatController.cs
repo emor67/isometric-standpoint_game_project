@@ -27,6 +27,10 @@ public class GeneralCombatController : MonoBehaviour
         playerSO.SetHealth(50);
         enemySO.SetHealth(50);
 
+        //initial damage
+        playerSO.Data.combatData.Damage = 20;
+        enemySO.Data.combatData.Damage = 10;
+
         _playerCombatController = FindObjectOfType<PlayerCombatController>();
         _enemyCombatController = FindObjectOfType<EnemyCombatController>();
     }
