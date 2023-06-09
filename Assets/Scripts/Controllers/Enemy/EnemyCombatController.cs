@@ -4,7 +4,7 @@ public class EnemyCombatController : MonoBehaviour
 {
     private GeneralCombatController _combatController;
 
-    private void Awake()
+    private void Start()
     {
         _combatController = FindObjectOfType<GeneralCombatController>();
     }
