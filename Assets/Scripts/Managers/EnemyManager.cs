@@ -14,7 +14,7 @@ public class EnemyManager : MonoBehaviour
         if(enemySO.Data.combatData.Health <= 0)
         {
             enemySO.SetHealth(50);
-            enemySO.DamageMulti(1.8f);
+            enemySO.DamageMulti(0.6f);
             TeleportToNextLocation();       
         }
     }
