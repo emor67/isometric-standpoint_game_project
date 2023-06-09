@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyAIController : MonoBehaviour
 {    
-    private float _visionDistance = 13f;
+    private float _visionDistance = 14f;
     
     private NavMeshAgent _navAgent;
     
