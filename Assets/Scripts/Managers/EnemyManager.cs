@@ -14,13 +14,14 @@ public class EnemyManager : MonoBehaviour
         if(enemySO.Data.combatData.Health <= 0)
         {
             enemySO.SetHealth(50);
+            enemySO.DamageMulti(1.8f);
             TeleportToNextLocation();       
         }
     }
 
     private void TeleportToNextLocation()
     {
-        Transform newLocation = teleportLocations[currentLocationIndex];
+        Transform newLocation = teleportLocations[currentLocationIndex +1];
 
         // Teleport the enemy to the new location
         transform.position = newLocation.position;

@@ -12,9 +12,9 @@ namespace Data.ValueObjects
     public struct EnemyCombatData
     {
         public int Health;
-        public int Damage;
+        public float Damage;
 
-        public EnemyCombatData(int health, int damage)
+        public EnemyCombatData(int health, float damage)
         {
             Health = health;
             Damage = damage;

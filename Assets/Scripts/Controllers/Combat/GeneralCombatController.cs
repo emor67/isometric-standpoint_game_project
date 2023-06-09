@@ -92,7 +92,7 @@ public class GeneralCombatController : MonoBehaviour
     //Player takes damage and set health
     public void PlayerTakeAndSet()
     {
-        PlayerTakeDamage(_enemyData.Damage);
+        PlayerTakeDamage((int)_enemyData.Damage);
         playerSO.SetHealth(_playerData.Health);
         StartCoroutine(PlayerAttackResetCoroutine());
     }
