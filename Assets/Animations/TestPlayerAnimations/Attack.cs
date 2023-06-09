@@ -23,6 +23,11 @@ public class Attack : MonoBehaviour
         {
             BlockMove();
         }
+        
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            DodgeMove();
+        }
     }
     
 
@@ -36,5 +41,10 @@ public class Attack : MonoBehaviour
     void BlockMove()
     {
         anim.SetTrigger("Block");
+    }
+
+    void DodgeMove()
+    {
+        anim.SetTrigger("Dodge");
     }
 }

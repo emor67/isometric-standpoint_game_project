@@ -24,7 +24,7 @@ public class GeneralCombatController : MonoBehaviour
     private void Start()
     {
         //initial health
-        playerSO.SetHealth(50);
+        playerSO.SetHealth(300);
         enemySO.SetHealth(50);
 
         //initial damage
