@@ -5,7 +5,7 @@ public class MainMenuController : MonoBehaviour
 {
     public void PlayButton()
     {
-        SceneManager.LoadScene("developmentScene");
+        SceneManager.LoadScene("Final");
     }
 
     public void ExitGameButton()

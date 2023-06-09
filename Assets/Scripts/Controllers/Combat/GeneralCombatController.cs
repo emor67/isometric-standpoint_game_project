@@ -21,11 +21,15 @@ public class GeneralCombatController : MonoBehaviour
         _playerData = playerCombatData;
     }
 
-    private void Awake()
+    private void Start()
     {
         //initial health
         playerSO.SetHealth(50);
         enemySO.SetHealth(50);
+
+        //initial damage
+        playerSO.Data.combatData.Damage = 20;
+        enemySO.Data.combatData.Damage = 10;
 
         _playerCombatController = FindObjectOfType<PlayerCombatController>();
         _enemyCombatController = FindObjectOfType<EnemyCombatController>();
@@ -85,10 +89,10 @@ public class GeneralCombatController : MonoBehaviour
         _playerCombatController.canAttack = true;
     }
 
-    //Player taskes damage and set health
+    //Player takes damage and set health
     public void PlayerTakeAndSet()
     {
-        PlayerTakeDamage(_enemyData.Damage);
+        PlayerTakeDamage((int)_enemyData.Damage);
         playerSO.SetHealth(_playerData.Health);
         StartCoroutine(PlayerAttackResetCoroutine());
     }
@@ -102,4 +106,21 @@ public class GeneralCombatController : MonoBehaviour
             StartCoroutine(EnemyAttackResetCoroutine());
         }
     }
+
+    ////potions
+    
+    public void HealthPotion() 
+    {
+        playerSO.Heal(10);    
+    }
+
+    public void DamageMultiplier()
+    {
+        playerSO.DamageMulti(2);
+    }
+
+    public void TakenDamageMultiplier()
+    {
+        enemySO.DamageMulti(2);
+    } 
 }

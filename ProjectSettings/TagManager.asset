@@ -9,6 +9,9 @@ TagManager:
   - PlayerSword
   - EnemySword
   - Grass
+  - HealthPotion
+  - DmgmultiPotion
+  - TakenDmgMultiPotion
   layers:
   - Default
   - TransparentFX

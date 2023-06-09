@@ -22,8 +22,18 @@ public class PlayerMovementController : MonoBehaviour
 
     private void MovePlayer()
     {
-        Vector3 movement = new Vector3(_horizontal, 0f, _vertical) * Time.fixedDeltaTime * _data.MovementSpeed;
-        playerRigidbody.MovePosition(transform.position + movement);
+        
+        float movementSpeed = _data.MovementSpeed;
+        float speedMultiplier = _data.SpeedMultiplier;
+        
+         if (Input.GetKey(KeyCode.LeftShift))
+        {
+        movementSpeed *= _data.SpeedMultiplier;
+        }
+
+
+        Vector3 movement = new Vector3(_horizontal, 0f, _vertical) * Time.fixedDeltaTime * movementSpeed;
+    playerRigidbody.MovePosition(transform.position + movement);
 
         if (movement != Vector3.zero)
         {

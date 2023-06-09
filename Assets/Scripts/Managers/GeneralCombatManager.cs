@@ -11,14 +11,15 @@ public class GeneralCombatManager : MonoBehaviour
     private EnemyData _enemyData;
     private PlayerData _playerData;
 
-    private void Awake()
+    private void Start()
     {
-        _enemyData = GetEnemyData();
-        _playerData = GetPlayerData();
+        
     }
 
     private void Update()
     {
+        _enemyData = GetEnemyData();
+        _playerData = GetPlayerData();
         SendDataToControllers();
     }
 
