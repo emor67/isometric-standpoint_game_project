@@ -21,7 +21,7 @@ public class GeneralCombatController : MonoBehaviour
         _playerData = playerCombatData;
     }
 
-    private void Awake()
+    private void Start()
     {
         //initial health
         playerSO.SetHealth(50);
